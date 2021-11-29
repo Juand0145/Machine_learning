@@ -6,13 +6,13 @@ def matrix_transpose(matrix):
     """Function that returns the transpose of a 2D matrix"""
 
     tranpose = []
-    row =[]    
+    row = []
 
     for i in range(len(matrix[0])):
         for j in matrix:
             row.append(j[i])
 
         tranpose.append(row)
-        row =[]
+        row = []
 
     return tranpose

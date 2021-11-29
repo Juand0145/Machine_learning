@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Is a function that adds two arrays element-wise"""
 
+
 def add_arrays(arr1, arr2):
     """Dunction that adds two arrays element-wise"""
 

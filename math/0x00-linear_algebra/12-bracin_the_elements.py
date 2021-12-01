@@ -6,6 +6,7 @@ multiplication, and division:"""
 def np_elementwise(mat1, mat2):
     """Function that performs element-wise addition, subtraction,
     multiplication, and division"""
+    import numpy as np
 
     add = np.add(mat1, mat2)
 

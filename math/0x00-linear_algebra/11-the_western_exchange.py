@@ -4,6 +4,7 @@
 
 def np_transpose(matrix):
     """Function that transposes matrix"""
+    import numpy as np
 
     transpose = matrix.T
 

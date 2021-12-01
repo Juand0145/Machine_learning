@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Is a function that performs matrix multiplication"""
-import numpy as np
 
 
 def mat_mul(mat1, mat2):
     """Function that performs matrix multiplication"""
+    import numpy as np
 
     columns = len(mat1[0])
     rows = len(mat2)

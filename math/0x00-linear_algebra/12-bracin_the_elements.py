@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Is a function that performs element-wise addition, subtraction,
 multiplication, and division:"""
-import numpy as np
 
 
 def np_elementwise(mat1, mat2):

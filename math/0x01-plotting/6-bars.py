@@ -8,17 +8,17 @@ fruit = np.random.randint(0, 20, (4, 3))
 people = ("Farrah", "Fred", "Felicia")
 fruits = ("apples", "bananas", "oranges", "peaches")
 
-# Get the  colors
+
 colors = ["red", "yellow", "#ff8000", "#ffe5b4"]
 n_rows = len(fruit)
 
 bar_width = 0.5
 
-# Initialize the vertical-offset for the stacked bar chart.
+
 y_offset = np.zeros(len(people))
 
 
-# Plot bars and create text labels for the table
+
 for row in range(n_rows):
     plt.bar(people, fruit[row], bar_width, bottom=y_offset,
             color=colors[row])

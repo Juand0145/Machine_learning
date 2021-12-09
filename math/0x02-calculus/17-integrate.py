@@ -10,7 +10,10 @@ def poly_integral(poly, C=0):
     integrated_coefficient = [C]
 
     for power, coefficient in enumerate(poly):
-        if power != 0:
+        if coefficient == 0:
+            integrated_coefficient.append(0)
+
+        elif power != 0:
             new_coefficient = coefficient / (power + 1)
             integrated_coefficient.append(new_coefficient)
 

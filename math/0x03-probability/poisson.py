@@ -29,6 +29,20 @@ class Poisson:
         PMF = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
         return PMF
 
+    def cdf(self, k):
+        """Method the value of the PMF Cumulative Distribution Functions
+        for a given number of successe"""
+        PMF = []
+        if k < 0:
+            return 0
+        k = int(k)
+
+        for n in range(k + 1):
+            PMF.append(self.pmf(n))
+
+        CDF = sum(PMF)
+        return CDF
+
 
 def factorial(n):
     """Function to calculate the factorial from a number"""

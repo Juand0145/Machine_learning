@@ -26,5 +26,5 @@ class Exponential:
         if x < 0:
             return 0
 
-        pdf = self.lambtha * (self.e ** -self.lambtha)
+        pdf = self.lambtha * (self.e ** (-self.lambtha/x))
         return pdf

@@ -25,6 +25,6 @@ class Exponential:
         """Method that value the pdf of exponential distribution"""
         if x < 0:
             return 0
-        
+
         pdf = self.lambtha * (self.e ** -self.lambtha)
         return pdf

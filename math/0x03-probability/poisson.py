@@ -2,11 +2,10 @@
 """Its a file tha cotain a class that represents a poisson distribution"""
 
 
-from math import factorial
-
-
 class Poisson:
     """Class that represents a poisson distribution"""
+    e = 2.7182818285
+    pi = 3.1415926536
 
     def __init__(self, data=None, lambtha=1.):
         if data is None:

@@ -2,6 +2,9 @@
 """Its a file tha cotain a class that represents a poisson distribution"""
 
 
+from math import factorial
+
+
 class Poisson:
     """Class that represents a poisson distribution"""
     e = 2.7182818285
@@ -19,3 +22,14 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = sum(data)/len(data)
+
+    def pmf(self, k):
+        """Method the value of the PMF Probability Mass Functions
+        for a given number of successes"""
+        if type(k) is not int:
+            self.k = int(k)
+        if k < 0:
+            return 0
+
+        PMF = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
+        return PMF

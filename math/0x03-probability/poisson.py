@@ -25,10 +25,9 @@ class Poisson:
 
     def pmf(self, k):
         """PMF Probability Mass Functions"""
-        if type(k) is not int:
-            self.k = int(k)
         if k < 0:
             return 0
+        k = int(k)
 
         pmf = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
         return pmf

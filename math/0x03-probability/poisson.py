@@ -7,8 +7,6 @@ from math import factorial
 
 class Poisson:
     """Class that represents a poisson distribution"""
-    e = 2.7182818285
-    pi = 3.1415926536
 
     def __init__(self, data=None, lambtha=1.):
         if data is None:
@@ -25,9 +23,10 @@ class Poisson:
 
     def pmf(self, k):
         """PMF Probability Mass Functions"""
+        e = 2.7182818285
         if k < 0:
             return 0
         k = int(k)
 
-        pmf = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
+        pmf = ((e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
         return pmf

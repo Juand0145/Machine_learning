@@ -24,8 +24,7 @@ class Poisson:
             self.lambtha = sum(data)/len(data)
 
     def pmf(self, k):
-        """Method the value of the PMF Probability Mass Functions
-        for a given number of successes"""
+        """PMF Probability Mass Functions"""
         if type(k) is not int:
             self.k = int(k)
         if k < 0:

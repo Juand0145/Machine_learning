@@ -31,5 +31,5 @@ class Poisson:
         if k < 0:
             return 0
 
-        PMF = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
-        return PMF
+        pmf = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
+        return pmf

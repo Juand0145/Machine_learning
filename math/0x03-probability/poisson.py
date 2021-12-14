@@ -22,11 +22,17 @@ class Poisson:
             self.lambtha = sum(data)/len(data)
 
     def pmf(self, k):
-        """PMF Probability Mass Functions"""
-        e = 2.7182818285
+        """Method the value of the PMF Probability Mass Functions
+        for a given number of successes"""
         if k < 0:
             return 0
         k = int(k)
+        PMF = ((self.e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
+        return PMF
 
-        pmf = ((e**-self.lambtha)*(self.lambtha ** k))/factorial(k)
-        return pmf
+
+def factorial(n):
+    """Function to calculate the factorial from a number"""
+    if n < 2:
+        return 1
+    return n * factorial(n-1)

@@ -28,3 +28,11 @@ class Exponential:
 
         pdf = self.lambtha * pow(self.e, -1 * self.lambtha * x)
         return pdf
+
+    def cdf(self, x):
+        """Method that value the cdf of exponential distribution"""
+        if x < 0:
+            return 0
+
+        cdf = 1 - pow(self.e, -1 * self.lambtha * x)
+        return cdf

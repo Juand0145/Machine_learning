@@ -32,13 +32,12 @@ class Binomial:
 
     def pmf(self, k):
         """Binomial distribution pmf"""
-        self.k = int(k)
+        k = int(k)
         if k > self.n and k < 0:
             return 0
 
-        combinatorial = factorial(self.n)/(factorial(k) * factorial(self.n-k))
-
-        pmf = combinatorial*pow(self.p, k)*pow(1-self.p, self.n - k)
+        pmf = (factorial(self.n) / factorial(k) / factorial(self.n - k) *
+                self.p ** k * (1 - self.p) ** (self.n - k))
         return pmf
 
 

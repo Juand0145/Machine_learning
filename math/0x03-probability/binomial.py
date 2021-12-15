@@ -27,9 +27,10 @@ class Binomial:
             mean = sum(data)/len(data)
             variance = sum([(x - mean) ** 2 for x in data]) / len(data)
 
-            p = 1 - (variance/mean)
-            self.n = round(mean/p)
-            self.p = mean/self.n
+            self.p = 1 - (variance/mean)
+            n = mean/self.p
+            self.n = round(n)
+            self.p *= n/self.n
 
     def pmf(self, k):
         """Binomial distribution pmf"""

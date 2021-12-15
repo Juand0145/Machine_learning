@@ -10,7 +10,7 @@ class Binomial:
 
     def __init__(self, data=None, n=1, p=0.5):
         if data is None:
-            if n < 0:
+            if n <= 0:
                 raise ValueError("n must be a positive value")
             if 0 <= p and p <= 1:
                 self.n = int(n)

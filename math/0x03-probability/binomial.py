@@ -13,7 +13,7 @@ class Binomial:
             if n <= 0:
                 raise ValueError("n must be a positive value")
             if 0 <= p and p <= 1:
-                self.n = int(n)
+                self.n = int(round(n))
                 self.p = float(p)
             else:
                 raise ValueError("p must be greater than 0 and less than 1")

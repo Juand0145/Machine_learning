@@ -1,4 +1,4 @@
-#!/usr/bien/env python3
+#!/usr/bin/env python3
 """File that contain the class that represents an
 binomial distribution"""
 

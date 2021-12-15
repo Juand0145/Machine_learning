@@ -39,3 +39,11 @@ class Normal:
         """Instance method that calculate x values"""
         x = (z * self.stddev) + self.mean
         return x
+
+    def pdf(self, x):
+        """Normal (Gaussian) Distribution PDF"""
+        function_part1 = 1 / (self.stddev * pow(2 * self.pi, 1/2))
+        function_part2 = pow(x - self.mean, 2) / (2 * pow(self.stddev, 2))
+
+        pdf = function_part1 * pow(self.e, -function_part2)
+        return pdf

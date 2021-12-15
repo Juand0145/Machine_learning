@@ -37,7 +37,7 @@ class Binomial:
             return 0
 
         pmf = (factorial(self.n) / factorial(k) / factorial(self.n - k) *
-                self.p ** k * (1 - self.p) ** (self.n - k))
+               self.p ** k * (1 - self.p) ** (self.n - k))
         return pmf
 
 

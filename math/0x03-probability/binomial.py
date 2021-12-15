@@ -13,7 +13,7 @@ class Binomial:
             if n <= 0:
                 raise ValueError("n must be a positive value")
             if 0 <= p and p <= 1:
-                self.n = int(round(n))
+                self.n = int(n)
                 self.p = float(p)
             else:
                 raise ValueError("p must be greater than 0 and less than 1")
@@ -30,3 +30,21 @@ class Binomial:
             p = 1 - (variance/mean)
             self.n = round(mean/p)
             self.p = mean/self.n
+
+    def pmf(self, k):
+        """Binomial distribution pmf"""
+        self.k = int(k)
+        if k > self.n and k < 0:
+            return 0
+
+        combinatorial = factorial(self.n)/(factorial(k) * factorial(self.n-k))
+
+        pmf = combinatorial*pow(self.p, k)*pow(1-self.p, self.n - k)
+        return pmf
+
+
+def factorial(n):
+    """Function to calculate the factorial from a number"""
+    if n < 2:
+        return 1
+    return n * factorial(n-1)

@@ -41,9 +41,27 @@ class Normal:
         return x
 
     def pdf(self, x):
-        """Normal (Gaussian) Distribution PDF"""
+        """Normal Distribution PDF"""
         function_part1 = 1 / (self.stddev * pow(2 * self.pi, 1/2))
         function_part2 = pow(x - self.mean, 2) / (2 * pow(self.stddev, 2))
 
         pdf = function_part1 * pow(self.e, -function_part2)
         return pdf
+
+    def cdf(self, x):
+        """Normal Distribution CDF"""
+        function_part1 = (x - self.mean)/(self.stddev*pow(2, 1/2))
+
+        cdf = (1/2)*(1+erf(function_part1))
+        return cdf
+
+
+def erf(z):
+    """Function to aproximate the error function"""
+    pi = 3.1415926536
+
+    parameters = (z - (pow(z, 3)/3) + (pow(z, 5)/10) -
+                  (pow(z, 7)/42) + (pow(z, 9)/216))
+
+    erf = (2/pow(pi, 1/2)) * parameters
+    return erf

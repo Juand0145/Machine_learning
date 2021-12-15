@@ -40,6 +40,19 @@ class Binomial:
                self.p ** k * (1 - self.p) ** (self.n - k))
         return pmf
 
+    def cdf(self, k):
+        """Binomial distribution cdf"""
+        pmf = []
+        if k < 0:
+            return 0
+        k = int(k)
+
+        for n in range(k + 1):
+            pmf.append(self.pmf(n))
+
+        CDF = sum(pmf)
+        return CDF
+
 
 def factorial(n):
     """Function to calculate the factorial from a number"""

@@ -29,3 +29,13 @@ class Normal:
 
             stddev = pow(sum(standard_diviations)/len(data), 1/2)
             self.stddev = float(stddev)
+
+    def z_score(self, x):
+        """Instance method tha calculate the z standard scores"""
+        z = (x - self.mean)/self.stddev
+        return z
+
+    def x_value(self, z):
+        """Instance method that calculate x values"""
+        x = (z * self.stddev) + self.mean
+        return x

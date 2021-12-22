@@ -1,0 +1,64 @@
+# 0x01. Classification
+
+In the following directory we will find a copilation of files that recreate a neural network capable to distnguish number draing by hand, also we want to answer the next questions:
+-   What is a model?
+-   What is supervised learning?
+-   What is a prediction?
+-   What is a node?
+-   What is a weight?
+-   What is a bias?
+-   What are activation functions?
+    -   Sigmoid?
+    -   Tanh?
+    -   Relu?
+    -   Softmax?
+-   What is a layer?
+-   What is a hidden layer?
+-   What is Logistic Regression?
+-   What is a loss function?
+-   What is a cost function?
+-   What is forward propagation?
+-   What is Gradient Descent?
+-   What is back propagation?
+-   What is a Computation Graph?
+-   How to initialize weights/biases
+-   The importance of vectorization
+-   How to split up your data
+-   What is multiclass classification?
+-   What is a one-hot vector?
+-   How to encode/decode one-hot vectors
+-   What is the softmax function and when do you use it?
+-   What is cross-entropy loss?
+-   What is pickling in Python?
+
+## Files
+
+ - 0-neuron.py
+ - 1-neuron.py
+ - 2-neuron.py
+ - 3-neuron.py
+ - 4-neuron.py
+ - 5-neuron.py
+ - 6-neuron.py
+ - 7-neuron.py
+ - 8-neural_network.py
+ - 9-neural_network.py
+ - 10-neural_network.py
+ - 11-neural_network.py
+ - 12-neural_network.py
+ - 13-neural_network.py
+ - 14-neural_network.py
+ - 15-neural_network.py
+ - 16-deep_neural_network.py
+ - 17-deep_neural_network.py
+ - 18-deep_neural_network.py
+ - 19-deep_neural_network.py
+ - 20-deep_neural_network.py
+ - 21-deep_neural_network.py
+ - 22-deep_neural_network.py
+ - 23-deep_neural_network.py
+ - 24-one_hot_encode.py
+ - 25-one_hot_decode.py
+ - 26-deep_neural_network.py
+ - 27-deep_neural_network.py
+ - 28-deep_neural_network.py

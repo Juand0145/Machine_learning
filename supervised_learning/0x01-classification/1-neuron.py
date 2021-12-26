@@ -18,6 +18,21 @@ class Neuron:
             raise ValueError("nx must be a positive integer")
 
         W = np.random.randn(nx)
-        self.W = W.reshape(1, nx)
-        self.b = 0
-        self.A = 0
+        self.__W = W.reshape(1, nx)
+        self.__b = 0
+        self.__A = 0
+
+    @property
+    def W(self):
+        """Returns the weights"""
+        return self.__W
+
+    @property
+    def b(self):
+        """Returns the bias initialized in 0"""
+        return self.__b
+
+    @property
+    def A(self):
+        """Returns the predictions initialized in 0"""
+        return self.__A

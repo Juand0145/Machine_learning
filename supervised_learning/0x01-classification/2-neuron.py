@@ -43,7 +43,7 @@ class Neuron:
         Args:
         X: Is a numpy.ndarray with shape (nx, m) that contains the input data
         """
-        neuron_output = np.dot(self.__W, X) + self.__b
+        neuron_output = np.matmul(self.__W, X) + self.__b
         ativation_function_output = sigmoid(neuron_output)
 
         self.__A = ativation_function_output

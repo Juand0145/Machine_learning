@@ -99,7 +99,7 @@ class Neuron:
         dw = (1 / m) * np.matmul(X, dCodz.T)
         db = (1 / m) * np.sum(dCodz)
 
-        self.__W = self.__W - dw * alpha
+        self.__W = self.__W - (dw * alpha).T
         self.__b = self.__b - db * alpha
 
 

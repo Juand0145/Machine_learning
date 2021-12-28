@@ -111,7 +111,7 @@ class Neuron:
             nx is the number of input features to the neuron
             m is the number of examples
         Y: is a numpy.ndarray with shape (1, m) that contains the correct
-        labels for the input data        
+        labels for the input data
         """
 
         for i in range(iterations):

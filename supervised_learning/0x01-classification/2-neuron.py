@@ -57,5 +57,5 @@ def sigmoid(z):
     Args:
     z: value to apply the sigmoid function
     """
-    sig = 1/(z + np.exp(-z))
+    sig = 1 / (1 + np.exp(-z))
     return sig

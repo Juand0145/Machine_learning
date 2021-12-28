@@ -140,19 +140,18 @@ class Neuron:
             if (i + 1) % step == 0 or i == 0:
                 if verbose:
                     print(f"Cost after {i} iterations:{cost}")
-            if graph:
-                cost_points.append(cost)  
-    
+            cost_points.append(cost)  
+
         if graph:
-            print (cost_points)
-            plt.plt(cost_points)
-            plt.xlim([0, i + 1])
-            plt.ylim([0, 4])
+            plt.plot(cost_points)
+            plt.title("Training Cost")
             plt.xlabel("iteration")
             plt.ylabel("cost")
-            plt.title("Training Cost")
             plt.show()
 
+        print("--------------------------------")
+        print(cost_points)
+        print("--------------------------------")
         return self.evaluate(X, Y)
 
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File that contains the clas NeuralNetwork"""
 import numpy as np
-from numpy.core.fromnumeric import shape
 
 
 class NeuralNetwork:
@@ -107,7 +106,6 @@ class NeuralNetwork:
         Args:
         X is a numpy.ndarray with shape (nx, m) that contains the input data
             nx is the number of input features to the neuron
-            m is the number of examples
         Y is a numpy.ndarray with shape (1, m) that contains the correct
         labels for the input data
         """
@@ -117,33 +115,3 @@ class NeuralNetwork:
         cost_function = self.cost(Y, self.__A2)
 
         return dicision_boundary, cost_function
-
-    def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
-        """
-        Public method that calculates one pass of gradient descent
-        on the neural network
-        Args:
-        X is a numpy.ndarray with shape (nx, m) that contains the input data
-            nx is the number of input features to the neuron
-            m is the number of examples
-        Y is a numpy.ndarray with shape (1, m) that contains the correct labels
-        for the input data
-        A1 is the output of the hidden layer
-        A2 is the predicted output
-        alpha is the learning rate
-        """
-        m = X.shape[1]
-
-        dCodz2 = A2 - Y
-        dw2 = (1/m) * np.matmul(A1, dCodz2.T)
-        db2 = (1/m) * np.sum(dCodz2, axis=1, keepdims=True)
-
-        dz1 = np.matmul(self.__W2.T, dCodz2) * (A1 * (1 - A1))
-        dw1 = (1/m) * np.matmul(dz1, X.T)
-        db1 = (1/m) * np.sum(dz1, axis=1, keepdims=True)
-
-        self.__W2 = self.__W2 - dw2 * alpha
-        self.__b2 = self.__b2 - db2 * alpha
-
-        self.__W1 = self.__W1 - dw1 * alpha
-        self.__b1 = self.__b1 - db1 * alpha

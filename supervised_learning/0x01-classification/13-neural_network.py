@@ -121,18 +121,17 @@ class NeuralNetwork:
         Public method that calculates one pass of gradient descent
         on the neural network
         """
-        m = X.shape[1]
+        m = Y.shape[1]
+        dz2 = A2 - Y  # derivative z2
+        dW2 = np.matmul(A1, dz2.T) / m  # grad of the loss with respect to w
 
-        dCodz2 = A2 - Y
-        dw2 = (1/m) * np.matmul(A1, dCodz2.T)
-        db2 = (1/m) * np.sum(dCodz2, axis=1, keepdims=True)
+        # grad of the loss with respect to b
+        db2 = np.sum(dz2, axis=1, keepdims=True) / m
+        dz1 = np.matmul(self.__W2.T, dz2) * (A1 * (1 - A1))
+        dW1 = np.matmul(dz1, X.T) / m
+        db1 = np.sum(dz1, axis=1, keepdims=True) / m
 
-        dz1 = np.matmul(self.__W2.T, dCodz2) * (A1 * (1 - A1))
-        dw1 = (1/m) * np.matmul(dz1, X.T)
-        db1 = (1/m) * np.sum(dz1, axis=1, keepdims=True)
-
-        self.__W2 = self.__W2 - dw2 * alpha
-        self.__b2 = self.__b2 - db2 * alpha
-
-        self.__W1 = self.__W1 - dw1 * alpha
-        self.__b1 = self.__b1 - db1 * alpha
+        self.__W2 -= (alpha * dW2).T
+        self.__b2 -= alpha * db2
+        self.__W1 -= alpha * dW1
+        self.__b1 -= alpha * db1

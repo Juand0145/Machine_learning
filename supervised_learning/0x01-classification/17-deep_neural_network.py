@@ -34,12 +34,12 @@ class DeepNeuralNetwork:
             key = "W{}".format(i + 1)
             if i == 0:
                 self.__weights[key] = np.random.randn(layers[i],
-                                                    nx)*np.sqrt(2/nx)
+                                                      nx)*np.sqrt(2/nx)
                 self.__weights["b{}".format(i + 1)] = np.zeros((layers[i], 1))
             else:
                 self.__weights[key] = (np.random.randn(layers[i],
-                                                     layers[i - 1]) *
-                                     np.sqrt(2/layers[i - 1]))
+                                                       layers[i - 1]) *
+                                       np.sqrt(2/layers[i - 1]))
                 self.__weights["b{}".format(i + 1)] = np.zeros((layers[i], 1))
 
     @property

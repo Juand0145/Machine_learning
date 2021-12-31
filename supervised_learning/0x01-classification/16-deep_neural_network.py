@@ -12,7 +12,8 @@ class DeepNeuralNetwork:
         class constructor
         Arg:
         nx: is the number of input features
-        layers: is a list representing the number of nodes in each layer of the network
+        layers: is a list representing the number of nodes in each layer of the
+        network
         """
         if type(nx) != int:
             raise TypeError('nx must be an integer')

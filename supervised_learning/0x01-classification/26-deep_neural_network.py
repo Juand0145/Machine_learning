@@ -155,44 +155,43 @@ class DeepNeuralNetwork:
         iterations: is the number of iterations to train over
         alpha is the learning rate
         """
-        if type(iterations) is not int:
-            raise TypeError("iterations must be an integer")
-        if iterations < 1:
-            raise ValueError("iterations must be a positive integer")
-        if type(alpha) is not float:
-            raise TypeError("alpha must be a float")
-        if alpha < 0:
-            raise TypeError("alpha must be positive")
+        if type(iterations) != int:
+            raise TypeError('iterations must be an integer')
+        else:
+            if iterations < 0:
+                raise ValueError('iterations must be a positive integer')
 
-        if verbose or graph:
-            if type(step) is not int:
-                raise TypeError("step must be an integer")
-            if step <= 0 and step > iterations:
-                raise("step must be positive and <= iterations")
+        if type(alpha) != float:
+            raise TypeError('alpha must be a float')
+        else:
+            if alpha < 0:
+                raise ValueError('alpha must be positive')
 
-        cost_points = []
+        if graph is True or verbose is True:
+            if type(step) != int:
+                raise TypeError('step must be an integer')
+            else:
+                if step < 0 or step > iterations:
+                    raise ValueError('step must be positive and <= iterations')
 
+        cost_list = []
         for i in range(iterations):
             A, cache = self.forward_prop(X)
-            cost = self.cost(Y, A)
             self.gradient_descent(Y, cache, alpha)
-
-            if i == 0 and verbose:
-                print("Cost after 0 iterations: {}".format(cost))
-            elif i % step == 0 and verbose:
-                print("Cost after {} iterations: {}".format(i, cost))
-            elif i + 1 == iterations:
-                print("Cost after {} iterations: {}".format(iterations, cost))
-
-            if graph:
-                cost_points.append(cost)
+            cost_list.append(self.cost(Y, A))
+            if i % step == 0 or i == iterations:
+                if verbose:
+                    print("Cost after {} iterations: {}"
+                          .format(i, self.cost(Y, A)))
+        A, cost = self.evaluate(X, Y)
+        if verbose:
+            print("Cost after {} iterations: {}".format(i + 1, cost))
 
         if graph:
-            plt.plot(cost_points)
-            plt.title("Training Cost")
-            plt.xlabel("iteration")
-            plt.ylabel("cost")
-            plt.show()
+            plt.plot(list(range(iterations)), cost_list)
+            plt.title('Training Cost')
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
 
         return self.evaluate(X, Y)
 

@@ -22,5 +22,5 @@ def one_hot_encode(Y, classes):
 
         return b.T
 
-    except:
+    except Exception:
         return None

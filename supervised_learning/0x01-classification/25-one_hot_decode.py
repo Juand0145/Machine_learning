@@ -21,9 +21,14 @@ def one_hot_decode(one_hot):
         columns = one_hot.shape[1]
 
         for i in range(rows):
+            flag = True
             for j in range(columns):
                 if one_hot[i][j] == 1:
                     decode.append(j)
+                    flag = False
+
+            if flag:
+                return None
 
         decode = np.array(decode)
 

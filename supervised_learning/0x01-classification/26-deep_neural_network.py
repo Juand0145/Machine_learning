@@ -2,7 +2,6 @@
 """File that contains DeepNeuralNetwork class"""
 import numpy as np
 import matplotlib.pyplot as plt
-import pickle
 
 
 class DeepNeuralNetwork:
@@ -203,6 +202,8 @@ class DeepNeuralNetwork:
         Args:
             filename is the file to which the object should be saved
         """
+        import pickle
+
         if filename[-4:] != ".pkl":
             filename = filename + ".pkl"
 
@@ -228,6 +229,7 @@ class DeepNeuralNetwork:
         filename: is the file from which the object should be loaded
         Returns: the loaded object, or None if filename doesn’t exist
         """
+        import pickle
 
         file = open(filename, "rb")
 

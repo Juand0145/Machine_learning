@@ -19,4 +19,4 @@ def one_hot_encode(Y, classes):
 
     b[np.arange(Y.size), Y] = 1
 
-    return b
+    return b.T

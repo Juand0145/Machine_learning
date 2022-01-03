@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
 """File that contains the function one_hot_decode"""
 
 

@@ -1,7 +1,6 @@
 #!usr/bin/env python3
 """File that contains the function one_hot_decode"""
 import numpy as np
-from numpy.lib.function_base import append
 
 
 def one_hot_decode(one_hot):

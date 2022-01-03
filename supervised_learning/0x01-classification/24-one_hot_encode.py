@@ -18,6 +18,10 @@ def one_hot_encode(Y, classes):
     if type(classes) is not int or classes < 1:
         return None
 
+    for i in np.nditer(Y):
+        if i >= classes:
+            return None
+
     b = np.zeros((Y.size, classes))
 
     b[np.arange(Y.size), Y] = 1

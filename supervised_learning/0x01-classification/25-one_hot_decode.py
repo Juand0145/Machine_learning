@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """File that contains the function one_hot_decode"""
+import numpy as np
 
 
 def one_hot_decode(one_hot):
-    import numpy as np
     """
     Function that converts a one-hot matrix into a vector of labels
     Args:
@@ -13,17 +13,21 @@ def one_hot_decode(one_hot):
     Returns: a numpy.ndarray with shape (m, ) containing the numeric
     labels for each example, or None on failure
     """
-    one_hot = one_hot.T
+    try:
+        one_hot = one_hot.T
 
-    decode = []
-    rows = one_hot.shape[0]
-    columns = one_hot.shape[1]
+        decode = []
+        rows = one_hot.shape[0]
+        columns = one_hot.shape[1]
 
-    for i in range(rows):
-        for j in range(columns):
-            if one_hot[i][j] == 1:
-                decode.append(j)
+        for i in range(rows):
+            for j in range(columns):
+                if one_hot[i][j] == 1:
+                    decode.append(j)
 
-    decode = np.array(decode)
+        decode = np.array(decode)
 
-    return decode
+        return decode
+
+    except Exception:
+        return None

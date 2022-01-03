@@ -1,9 +1,9 @@
 #!usr/bin/env python3
 """File that contains the function one_hot_decode"""
-import numpy as np
 
 
 def one_hot_decode(one_hot):
+    import numpy as np
     """
     Function that converts a one-hot matrix into a vector of labels
     Args:

@@ -231,7 +231,10 @@ class DeepNeuralNetwork:
         """
         import pickle
 
-        file = open(filename, "rb")
+        try:
+            file = open(filename, "rb")
+        except Exception:
+            return None
 
         atributes = pickle.load(file)
 

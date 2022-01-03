@@ -179,9 +179,11 @@ class DeepNeuralNetwork:
             self.gradient_descent(Y, cache, alpha)
 
             if i == 0 and verbose:
-                print(f"Cost after 0 iterations: {cost}")
+                print("Cost after 0 iterations: {}".format(cost))
             elif i % step == 0 and verbose:
-                print(f"Cost after {i} iterations: {cost}")
+                print("Cost after {} iterations: {}".format(i, cost))
+            elif i + 1 == iterations:
+                print("Cost after {} iterations: {}".format(iterations, cost))
 
             if graph:
                 cost_points.append(cost)
@@ -226,17 +228,14 @@ class DeepNeuralNetwork:
         filename: is the file from which the object should be loaded
         Returns: the loaded object, or None if filename doesn’t exist
         """
-        try:
-            file = open(filename, "rb")
 
-            atributes = pickle.load(file)
+        file = open(filename, "rb")
 
-            new_object = DeepNeuralNetwork(atributes[0], atributes[1])
-            new_object.__L = atributes[2]
-            new_object.__cache = atributes[3]
-            new_object.__weights = atributes[4]
+        atributes = pickle.load(file)
 
-        except Exception:
-            return None
+        new_object = DeepNeuralNetwork(atributes[0], atributes[1])
+        new_object.__L = atributes[2]
+        new_object.__cache = atributes[3]
+        new_object.__weights = atributes[4]
 
         return new_object

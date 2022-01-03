@@ -15,7 +15,10 @@ def one_hot_encode(Y, classes):
     Returns: a one-hot encoding of Y with shape (classes, m),
     or None on failure
     """
-    b = np.zeros((Y.size, Y.max()+1))
+    if type(classes) is not int or classes < 1:
+        return None
+
+    b = np.zeros((Y.size, classes))
 
     b[np.arange(Y.size), Y] = 1
 

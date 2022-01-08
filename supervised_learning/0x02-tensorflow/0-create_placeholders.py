@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """File that contains the class create_placeholders"""
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def create_placeholders(nx, classes):

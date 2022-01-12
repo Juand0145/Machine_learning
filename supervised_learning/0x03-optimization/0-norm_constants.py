@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File that contains the function normalization_constants"""
 import numpy as np
-import tensorflow.compat.v1 as tf
 
 
 def normalization_constants(X):
@@ -18,4 +17,4 @@ def normalization_constants(X):
     mean = np.mean(X, axis=0)
     standard_deviation = np.std(X, axis=0)
 
-    return mean, standard_deviation    
+    return mean, standard_deviation

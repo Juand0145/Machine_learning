@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File that conatins the function normalize"""
 import numpy as np
-import tensorflow.compat.v1 as tf
 
 
 def normalize(X, m, s):

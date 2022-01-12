@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File that contains the function shuffle_data"""
 import numpy as np
-import tensorflow.compat.v1 as tf
 
 
 def shuffle_data(X, Y):

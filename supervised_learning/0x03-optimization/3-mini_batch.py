@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """File that contains the function train_mini_batch"""
-import numpy as np
 import tensorflow.compat.v1 as tf
 
 

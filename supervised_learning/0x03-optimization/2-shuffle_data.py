@@ -20,5 +20,5 @@ def shuffle_data(X, Y):
 
     X_shuffle = X[shuffle]
     Y_shuffle = Y[shuffle]
-    
+
     return X_shuffle, Y_shuffle

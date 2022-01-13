@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """File that contains the function """
-import numpy as np
 
 
 def batch_norm(Z, gamma, beta, epsilon):

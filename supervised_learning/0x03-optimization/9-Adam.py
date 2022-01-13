@@ -1,4 +1,4 @@
-#!/usr/bin7env python3
+#!/usr/bin/env python3
 """File that contains the function update_variables_Adam"""
 
 

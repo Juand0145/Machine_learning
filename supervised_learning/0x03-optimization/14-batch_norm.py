@@ -1,4 +1,4 @@
-#!/usr/bien/env python3
+#!/usr/bin/env python3
 """File that contains the function create_batch_norm_layer"""
 import tensorflow.compat.v1 as tf
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """File hat contains the funtion l2_reg_cost"""
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def l2_reg_cost(cost):

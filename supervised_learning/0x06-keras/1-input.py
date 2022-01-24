@@ -16,21 +16,21 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     keep_prob is the probability that a node will be kept for dropout
     Returns: the keras model
     """
-    model = K.Sequential()
 
-    regularizer = K.regularizers.L2(lambtha)
+    inputs = K.Input(shape=(nx,))
+    regularizer = K.regularizers.l2(lambtha)
 
-    model.add(K.layers.Dense(layers[0],
-                             input_shape=(nx,),
-                             activation=activations[0],
-                             kernel_regularizer=regularizer))
+    output = K.layers.Dense(layers[0],
+                            activation=activations[0],
+                            kernel_regularizer=regularizer)(inputs)
 
     hidden_layers = range(len(layers))[1:]
 
     for i in hidden_layers:
-        model.add(K.layers.Dropout(1 - keep_prob))
-        model.add(K.layers.Dense(layers[i],
-                                 activation=activations[i],
-                                 kernel_regularizer=regularizer))
+        dropout = K.layers.Dropout(1 - keep_prob)(output)
+        output = K.layers.Dense(layers[i], activation=activations[i],
+                                kernel_regularizer=regularizer)(dropout)
+
+    model = K.Model(inputs, output)
 
     return model

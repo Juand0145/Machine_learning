@@ -9,6 +9,8 @@ def inception_network():
     in Going Deeper with Convolutions (2014)
     Returns: the keras model
     """
+    inception_block = __import__('0-inception_block').inception_block
+
     X = K.Input(shape=(224, 224, 3))
     initializer = K.initializers.he_normal()
     function = "relu"

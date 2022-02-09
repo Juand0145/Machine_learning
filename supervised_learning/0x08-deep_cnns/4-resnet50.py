@@ -47,13 +47,13 @@ def resnet50():
     identity4_4 = identity_block(identity4_3, [256, 256, 1024])
     identity4_5 = identity_block(identity4_4, [256, 256, 1024])
 
-    prjconv4 = projection_block(identity4_5, [512, 512, 2048])
+    projection_4 = projection_block(identity4_5, [512, 512, 2048])
 
-    idconv5_1 = identity_block(prjconv4, [512, 512, 2048])
-    idconv5_2 = identity_block(idconv5_1, [512, 512, 2048])
+    identity5_1 = identity_block(projection_4, [512, 512, 2048])
+    identity5_2 = identity_block(identity5_1, [512, 512, 2048])
 
     avg_pool = K.layers.AveragePooling2D(pool_size=7,
-                                         padding='same')(idconv5_2)
+                                         padding='same')(identity5_2)
 
     full_connection = K.layers.Dense(1000,
                                      activation='softmax',

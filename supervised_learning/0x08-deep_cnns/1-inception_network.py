@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """File that contain the function inception_network"""
 import tensorflow.keras as K
+inception_block = __import__('0-inception_block').inception_block
 
 
 def inception_network():
@@ -9,7 +10,6 @@ def inception_network():
     in Going Deeper with Convolutions (2014)
     Returns: the keras model
     """
-    inception_block = __import__('0-inception_block').inception_block
 
     X = K.Input(shape=(224, 224, 3))
     initializer = K.initializers.he_normal()

@@ -18,6 +18,8 @@ def dense_block(X, nb_filters, growth_rate, layers):
     initializer = K.initializers.he_normal
     function = "relu"
 
+
+
     normalization_1 = K.layers.BatchNormalization()(X)
 
     function_1 = K.layers.Activation(function)(normalization_1)

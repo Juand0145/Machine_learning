@@ -18,27 +18,27 @@ def dense_block(X, nb_filters, growth_rate, layers):
     initializer = K.initializers.he_normal
     function = "relu"
 
+    for layer in range(layers):
+        normalization_1 = K.layers.BatchNormalization()(X)
 
+        function_1 = K.layers.Activation(function)(normalization_1)
 
-    normalization_1 = K.layers.BatchNormalization()(X)
-
-    function_1 = K.layers.Activation(function)(normalization_1)
-
-    bottleneck = K.layers.Conv2D(filters=4*growth_rate,
-                                 kernel_size=1,
-                                 padding="same",
-                                 kernel_initializer=initializer)(function_1)
-
-    normalization_2 = K.layers.BatchNormalization()(bottleneck)
-
-    function_2 = K.layers.Activation(function)(normalization_2)
-
-    X_convolution = K.layers.Conv2D(filters=growth_rate,
-                                    kernel_size=3,
+        bottleneck = K.layers.Conv2D(filters=4*growth_rate,
+                                    kernel_size=1,
                                     padding="same",
-                                    kernel_initializer=initializer)(function_2)
+                                    kernel_initializer=initializer)(function_1)
 
-    X = K.layers.concatenate([X, X_convolution])
-    nb_filters = nb_filters + growth_rate
+        normalization_2 = K.layers.BatchNormalization()(bottleneck)
+
+        function_2 = K.layers.Activation(function)(normalization_2)
+
+        X_convolution = K.layers.Conv2D(filters=growth_rate,
+                                        kernel_size=3,
+                                        padding="same",
+                                        kernel_initializer=initializer)(function_2)
+
+
+        X = K.layers.concatenate([X, X_convolution])
+        nb_filters = nb_filters + growth_rate
 
     return X, nb_filters

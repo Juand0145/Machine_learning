@@ -11,31 +11,29 @@ def inception_network():
     Returns: the keras model
     """
     X = K.Input(shape=(224, 224, 3))
-    initializer = K.initializers.he_normal()
-    function = "relu"
+    function = ("relu", "softmax")
 
     conv_1 = K.layers.Conv2D(filters=64,
                              kernel_size=7,
-                             strides=(2, 2),
+                             strides=2,
                              padding="same",
-                             activation=function,
-                             kernel_initializer=initializer)(X)
+                             activation=function[0])(X)
 
-    max_pool_1 = K.layers.MaxPool2D(pool_size=[3, 3],
-                                    strides=(2, 2),
+    max_pool_1 = K.layers.MaxPool2D(pool_size=3,
+                                    strides=2,
                                     padding="same")(conv_1)
 
     conv_2P = K.layers.Conv2D(filters=64,
                               kernel_size=1,
-                              padding="valid",
-                              activation=function,
-                              kernel_initializer=initializer)(max_pool_1)
+                              strides=1,
+                              padding="same",
+                              activation=function[0])(max_pool_1)
 
     conv_2 = K.layers.Conv2D(filters=192,
                              kernel_size=3,
+                             strides=1,
                              padding="same",
-                             activation=function,
-                             kernel_initializer=initializer)(conv_2P)
+                             activation=function[0])(conv_2P)
 
     max_pool_2 = K.layers.MaxPool2D(pool_size=[3, 3],
                                     strides=(2, 2),
@@ -62,14 +60,12 @@ def inception_network():
     inception_5b = inception_block(inception_5a, [384, 192, 384, 48, 128, 128])
 
     average_pool = K.layers.AveragePooling2D(pool_size=[7, 7],
-                                             strides=(1, 1),
-                                             padding='valid')(inception_5b)
+                                             strides=(1, 1),)(inception_5b)
 
     dropout = K.layers.Dropout(0.4)(average_pool)
 
     full_connection = K.layers.Dense(1000,
-                                     activation="softmax",
-                                     kernel_initializer=initializer)(dropout)
+                                     activation=function[1])(dropout)
 
     model = K.models.Model(inputs=X,
                            outputs=full_connection)

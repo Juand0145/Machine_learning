@@ -15,27 +15,21 @@ def inception_network():
     function = "relu"
 
     conv_1 = K.layers.Conv2D(filters=64,
-                             kernel_size=7,
+                             kernel_size=(7, 7),
                              strides=(2, 2),
                              padding="same",
                              activation=function,
                              kernel_initializer=initializer)(X)
 
-    max_pool_1 = K.layers.MaxPool2D(pool_size=[3, 3],
+    max_pool_1 = K.layers.MaxPool2D(pool_size=(3, 3),
                                     strides=(2, 2),
                                     padding="same")(conv_1)
-
-    conv_2P = K.layers.Conv2D(filters=64,
-                              kernel_size=1,
-                              padding="valid",
-                              activation=function,
-                              kernel_initializer=initializer)(max_pool_1)
 
     conv_2 = K.layers.Conv2D(filters=192,
                              kernel_size=3,
                              padding="same",
                              activation=function,
-                             kernel_initializer=initializer)(conv_2P)
+                             kernel_initializer=initializer)(max_pool_1)
 
     max_pool_2 = K.layers.MaxPool2D(pool_size=[3, 3],
                                     strides=(2, 2),

@@ -46,7 +46,7 @@ def model():
 
 def learning_rate_decay(epoch):
     """
-    Funtion that 
+    Funtion thats used to generate a learning rate decay
     """
     alpha_utd = 0.001 / (1 + (1 * epoch))
     return alpha_utd
@@ -77,8 +77,8 @@ if __name__ == '__main__':
 
     model.fit(X_train,
               Y_train,
-              batch_size=64,
-              epochs=10,
+              batch_size=100,
+              epochs=2,
               verbose=True,
               shuffle=False,
               validation_data=(X_valid, Y_valid),

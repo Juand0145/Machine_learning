@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+"""File that contains the function minor"""
 
 def minor(matrix):
     """

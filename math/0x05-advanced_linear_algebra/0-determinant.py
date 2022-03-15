@@ -21,7 +21,7 @@ def determinant(matrix):
     except:
         raise TypeError("matrix must be a list of lists")
 
-    if len(matrix[0]) == 1 and type(matrix[0][0]) == int:
+    if len(matrix[0]) == 1:
         return int(matrix[0][0])
 
     if len(matrix) != len(matrix[0]):

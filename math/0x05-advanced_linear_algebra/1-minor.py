@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""File that contains the function determinant"""
 
 
-def determinant(matrix):
+def minor(matrix):
     """
-    Function that calculates the determinant from a matrix:
-    matrix: is a list of lists whose determinant should be calculated
-        If matrix is not a list of lists, raise a TypeError with the
-        message matrix must be a list of lists
-        If matrix is not square, raise a ValueError with the message
-        matrix must be a square matrix
-    The list [[]] represents a 0x0 matrix
-    Returns: the determinant of matrix
+    Function that calculates the minor of a mtarix
+    matrix is a list of lists whose minor matrix should be calculated
+    If matrix is not a list of lists, raise a TypeError with the message
+    matrix must be a list of lists
+    If matrix is not square or is empty, raise a ValueError with the message
+    matrix must be a non-empty square matrix
+    Returns: the minor matrix of matrix
     """
+    determinant = __import__("0-determinant").determinant
+
     if matrix == [[]]:
-        return 1
+        raise ValueError("matrix must be a square matrix")
 
     try:
         flag = matrix[0][0]
@@ -22,44 +22,39 @@ def determinant(matrix):
         raise TypeError("matrix must be a list of lists")
 
     if len(matrix[0]) == 1:
-        return (matrix[0][0])
+        return [[1]]
 
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a square matrix")
 
-    return deter(matrix)
-
-
-def deter(matrix):
-    """
-    Function that calculates the determinant from a matrix
-    matrix: is a list of lists whose determinant should be calculated
-    """
     row = len(matrix)
 
-    if row == 2:
-        two_two = (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
-        return two_two
+    a = []
+    result = []
 
-    else:
-        a = []
-        result = []
-
-        for x in range(row):
-
+    for x in range(row):
+        for y in range(row):
             for i in range(row):
                 for j in range(row):
-                    if i != 0 and j != x:
+                    if i != x and j != y:
                         a.append(matrix[i][j])
 
-            splitedSize = row - 1
-            new_matrix = [a[x:x+splitedSize]
-                          for x in range(0, len(a), splitedSize)]
-
-            if x % 2:
-                result.append(matrix[0][x] * -deter(new_matrix))
-            else:
-                result.append(matrix[0][x] * +deter(new_matrix))
+            new_matrix = splice(a, row - 1)
             a = []
 
-        return (sum(result))
+            minor_value = determinant(new_matrix)
+            result.append(minor_value)
+
+    return (splice(result, row))
+
+
+def splice(array, splitedSize):
+    """
+    Function that tranform an array into a square matrix:
+    array: the array to transform
+    splitedSize: the size of the matrix
+    return a square matrix
+    """
+    spliced_matrix = [array[x:x+splitedSize]
+                      for x in range(0, len(array), splitedSize)]
+    return spliced_matrix

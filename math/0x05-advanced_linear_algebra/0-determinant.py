@@ -18,7 +18,7 @@ def determinant(matrix):
 
     try:
         flag = matrix[0][0]
-    except:
+    except Exception:
         raise TypeError("matrix must be a list of lists")
 
     if len(matrix[0]) == 1:

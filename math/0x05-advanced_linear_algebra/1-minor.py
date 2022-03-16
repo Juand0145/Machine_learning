@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """File that contains the function minor"""
 
+
 def minor(matrix):
     """
     Function that calculates the minor of a mtarix

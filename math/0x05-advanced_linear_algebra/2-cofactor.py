@@ -12,22 +12,20 @@ def cofactor(matrix):
     Returns: the cofactor matrix of matrix
     """
     determinant = __import__("0-determinant").determinant
-
-    if matrix == [[]]:
-        raise ValueError("matrix must be a square matrix")
-
-    try:
-        flag = matrix[0][0]
-    except Exception:
-        raise TypeError("matrix must be a list of lists")
-
-    if len(matrix[0]) == 1:
-        return [[1]]
-
-    if len(matrix) != len(matrix[0]):
-        raise ValueError("matrix must be a square matrix")
-
     row = len(matrix)
+
+    if type(matrix) != list or len(matrix) == 0:
+        raise TypeError("matrix must be a list of lists")
+    if not all([type(mat) == list for mat in matrix]):
+        raise TypeError("matrix must be a list of lists")
+    if matrix == [[]]:
+        raise ValueError("matrix must be a non-empty square matrix")
+    if matrix[0] and len(matrix) != len(matrix[0]):
+        raise ValueError("matrix must be a non-empty square matrix")
+    if not all([len(mat) == row for mat in matrix]):
+        raise ValueError("matrix must be a non-empty square matrix")
+    if row == 1:
+        return [[1]]
 
     a = []
     result = []

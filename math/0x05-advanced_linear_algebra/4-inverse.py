@@ -25,16 +25,24 @@ def inverse(matrix):
         raise ValueError("matrix must be a non-empty square matrix")
     if not all([len(mat) == row for mat in matrix]):
         raise ValueError("matrix must be a non-empty square matrix")
-    if row == 1:
-        return [[1]]
-
     if determinant(matrix) == 0:
         return None
-    if len(matrix) == 1:
-        return [[1/matrix[0][0]]]
+    # if len(matrix) == 1:
+    #     return [[1/matrix[0][0]]]
 
     a = np.array(matrix)
 
-    inverse = np.linalg.inv(a).tolist()
+    inverse_np = np.linalg.inv(a)
 
-    return inverse
+    inverse_array = []
+    line = []
+
+    for i in range(row):
+        for j in range(row):
+            element = (
+                (inverse_np[i][j] * determinant(matrix)) / determinant(matrix))
+            line.append(element)
+        inverse_array.append(line)
+        line = []
+
+    return inverse_np

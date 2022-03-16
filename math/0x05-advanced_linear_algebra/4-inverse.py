@@ -45,4 +45,4 @@ def inverse(matrix):
         inverse_array.append(line)
         line = []
 
-    return inverse_np
+    return inverse_array

@@ -11,8 +11,10 @@ def inverse(matrix):
     the message matrix must be a non-empty square matrix
     Returns: the inverse of matrix, or None if matrix is singular
     """
-    import numpy as np
     determinant = __import__("0-determinant").determinant
+    cofactor = __import__("2-cofactor").cofactor
+    transpose = __import__("3-adjugate").matrix_transpose
+
     row = len(matrix)
 
     if type(matrix) != list or len(matrix) == 0:
@@ -27,22 +29,15 @@ def inverse(matrix):
         raise ValueError("matrix must be a non-empty square matrix")
     if determinant(matrix) == 0:
         return None
-    # if len(matrix) == 1:
-    #     return [[1/matrix[0][0]]]
+    if len(matrix) == 1:
+        return [[1/matrix[0][0]]]
 
-    a = np.array(matrix)
+    cofactor_matrix = cofactor(matrix)
 
-    inverse_np = np.linalg.inv(a)
+    inverse_matrix = transpose(cofactor_matrix)
 
-    inverse_array = []
-    line = []
+    for i, rows in enumerate(inverse_matrix):
+        for j, values in enumerate(rows):
+            inverse_matrix[i][j] = values / determinant(matrix)
 
-    for i in range(row):
-        for j in range(row):
-            element = (
-                (inverse_np[i][j] * determinant(matrix)) / determinant(matrix))
-            line.append(round(element, 2))
-        inverse_array.append(line)
-        line = []
-
-    return inverse_array
+    return inverse_matrix

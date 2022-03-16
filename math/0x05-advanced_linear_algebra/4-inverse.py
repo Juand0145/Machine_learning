@@ -41,7 +41,7 @@ def inverse(matrix):
         for j in range(row):
             element = (
                 (inverse_np[i][j] * determinant(matrix)) / determinant(matrix))
-            line.append(element)
+            line.append(round(element, 2))
         inverse_array.append(line)
         line = []
 

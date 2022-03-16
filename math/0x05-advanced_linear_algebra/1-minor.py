@@ -28,7 +28,6 @@ def minor(matrix):
     if row == 1:
         return [[1]]
 
-
     a = []
     result = []
 

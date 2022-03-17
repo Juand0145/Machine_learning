@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """File that contains the function definiteness"""
-import numpy as np
 
 
 def definiteness(matrix):
@@ -17,6 +16,8 @@ def definiteness(matrix):
     If matrix does not fit any of the above categories, return None
     You may import numpy as np
     """
+    import numpy as np
+
     if type(matrix) is not np.ndarray:
         raise TypeError("matrix must be a numpy.ndarray")
     if len(matrix.shape) == 1:

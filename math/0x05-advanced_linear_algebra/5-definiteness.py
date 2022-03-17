@@ -1,43 +1,40 @@
 #!/usr/bin/env python3
-"""File that contains the function inverse"""
+"""File that contains the function definiteness"""
+import numpy as np
 
 
 def definiteness(matrix):
     """
-    matrix is a list of lists whose inverse should be calculated
-    If matrix is not a list of lists, raise a TypeError with the
-    message matrix must be a list of lists
-    If matrix is not square or is empty, raise a ValueError with
-    the message matrix must be a non-empty square matrix
-    Returns: the inverse of matrix, or None if matrix is singular
+    matrix is a numpy.ndarray of shape (n, n) whose definiteness
+    should be calculated
+    If matrix is not a numpy.ndarray, raise a TypeError with the
+    message matrix must be a numpy.ndarray
+    If matrix is not a valid matrix, return None
+    Return: the string Positive definite, Positive semi-definite, Negative
+    semi-definite, Negative definite, or Indefinite if the matrix is positive
+    definite, positive semi-definite, negative semi-definite, negative
+    definite of indefinite, respectively
+    If matrix does not fit any of the above categories, return None
+    You may import numpy as np
     """
-    determinant = __import__("0-determinant").determinant
-    cofactor = __import__("2-cofactor").cofactor
-    transpose = __import__("3-adjugate").matrix_transpose
-
-    row = len(matrix)
-
-    if type(matrix) != list or len(matrix) == 0:
-        raise TypeError("matrix must be a list of lists")
-    if not all([type(mat) == list for mat in matrix]):
-        raise TypeError("matrix must be a list of lists")
-    if matrix == [[]]:
-        raise ValueError("matrix must be a non-empty square matrix")
-    if matrix[0] and len(matrix) != len(matrix[0]):
-        raise ValueError("matrix must be a non-empty square matrix")
-    if not all([len(mat) == row for mat in matrix]):
-        raise ValueError("matrix must be a non-empty square matrix")
-    if determinant(matrix) == 0:
+    if type(matrix) is not np.ndarray:
+        raise TypeError("matrix must be a numpy.ndarray")
+    if len(matrix.shape) == 1:
         return None
-    if len(matrix) == 1:
-        return [[1/matrix[0][0]]]
+    if (matrix.shape[0] != matrix.shape[1]):
+        return None
+    if not np.all(matrix.T == matrix):
+        return None
 
-    cofactor_matrix = cofactor(matrix)
+    w, v = np.linalg.eig(matrix)
 
-    inverse_matrix = transpose(cofactor_matrix)
-
-    for i, rows in enumerate(inverse_matrix):
-        for j, values in enumerate(rows):
-            inverse_matrix[i][j] = values / determinant(matrix)
-
-    return inverse_matrix
+    if np.all(w > 0):
+        return "Positive definite"
+    if np.all(w >= 0):
+        return "Positive semi-definite"
+    if np.all(w < 0):
+        return "Negative definite"
+    if np.all(w <= 0):
+        return "Negative semi-definite"
+    else:
+        return "Indefinite"

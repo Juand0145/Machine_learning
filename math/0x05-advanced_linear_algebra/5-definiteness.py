@@ -15,7 +15,6 @@ def definiteness(matrix):
     definite, positive semi-definite, negative semi-definite, negative
     definite of indefinite, respectively
     If matrix does not fit any of the above categories, return None
-    You may import numpy as np
     """
     if type(matrix) is not np.ndarray:
         raise TypeError("matrix must be a numpy.ndarray")

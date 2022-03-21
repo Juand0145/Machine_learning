@@ -1,4 +1,4 @@
-#!/usr/bin/env puthon3
+#!/usr/bin/env python3
 """File that contains the function mean_cov"""
 import numpy as np
 

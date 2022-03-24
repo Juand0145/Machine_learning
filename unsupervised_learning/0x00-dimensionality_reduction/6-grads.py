@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """File that contains the function grads"""
 import numpy as np
+Q_affinities = __import__('5-Q_affinities').Q_affinities
 
 
 def grads(Y, P):
@@ -18,7 +19,6 @@ def grads(Y, P):
     Q is a numpy.ndarray of shape (n, n) containing the Q affinities of Y
     You may use Q_affinities = __import__('5-Q_affinities').Q_affinities
     """
-    Q_affinities = __import__('5-Q_affinities').Q_affinities
 
     n, ndim = Y.shape
     Q, num = Q_affinities(Y)

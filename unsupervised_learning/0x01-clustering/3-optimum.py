@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """File that contains the function optimum_k"""
+kmeans = __import__('1-kmeans').kmeans
+variance = __import__('2-variance').variance
 
 
 def optimum_k(X, kmin=1, kmax=None, iterations=1000):
@@ -21,9 +23,6 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         d_vars is a list containing the difference in variance from the
         smallest cluster size for each cluster size
     """
-    kmeans = __import__('1-kmeans').kmeans
-    variance = __import__('2-variance').variance
-
     results = []
     var = []
 

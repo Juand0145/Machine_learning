@@ -24,19 +24,35 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     """
     kmeans = __import__('1-kmeans').kmeans
     variance = __import__('2-variance').variance
+    try:
+        if not isinstance(X, np.ndarray) or len(X.shape) != 2:
+            return None, None
+        if not isinstance(iterations, int) or iterations < 1:
+            return None, None
+        if kmax is not None and (type(kmax) is not int or kmax < 1):
+            return None, None
+        if kmax is not None and kmin >= kmax:
+            return None, None
+        if kmax is None:
+            kmax = X.shape[0]
+        if not isinstance(kmin, int) or kmin < 1 or kmin >= X.shape[0]:
+            return None, None
 
-    results = []
-    var = []
+        results = []
+        var = []
 
-    for k in range(kmin, kmax + 1):
-        C, clss = kmeans(X, k, iterations)
-        results.append((C, clss))
+        for k in range(kmin, kmax + 1):
+            C, clss = kmeans(X, k, iterations)
+            results.append((C, clss))
 
-        var.append(variance(X, C))
+            var.append(variance(X, C))
 
-    d_var = [0]
-    for i in range(kmax - 1):
-        derivate = var[i] - var[i + 1]
-        d_var.append(derivate + d_var[i])
+        d_var = [0]
+        for i in range(kmax - 1):
+            derivate = var[i] - var[i + 1]
+            d_var.append(derivate + d_var[i])
 
-    return results, d_var
+        return results, d_var
+
+    except Exception:
+        return None, None

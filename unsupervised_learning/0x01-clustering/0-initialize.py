@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """File that contains the function initialize"""
 import numpy as np
-from sklearn.cluster import KMeans
 
 
 def initialize(X, k):

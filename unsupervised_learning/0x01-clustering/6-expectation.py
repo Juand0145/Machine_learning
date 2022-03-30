@@ -44,7 +44,7 @@ def expectation(X, pi, m, S):
 
         denominator += numerator
 
-    l = np.sum(np.log(np.sum(g, axis=0)))
+    log_likelihood = np.sum(np.log(np.sum(g, axis=0)))
     g = g / denominator
 
-    return g, l
+    return g, log_likelihood

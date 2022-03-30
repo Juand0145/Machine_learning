@@ -31,21 +31,18 @@ def pdf(X, m, S):
 
     n, d = X.shape
 
-    P = np.zeros(n)
-    for i in range(n):
+    pi = (2 * np.pi) ** (d/2)
+    sigma_1 = np.linalg.det(S) ** (1/2)
 
-        pi = (2 * np.pi) ** (d/2)
-        sigma_1 = np.linalg.det(S) ** (1/2)
+    sigma_2 = np.linalg.inv(S)
+    operation_1 = np.matmul((X - m), sigma_2)
+    operation_2 = np.sum((X - m) * operation_1, axis=1)
 
-        var_1 = (X[i] - m, )
-        sigma_2 = np.linalg.inv(S)
-        var_2 = np.transpose((X[i] - m, ))
+    equation_1 = 1/(pi * sigma_1)
+    equation_2 = np.exp((-1/2) * operation_2)
 
-        equation_1 = 1/(pi * sigma_1)
-        equation_2 = np.matmul(np.matmul(var_1, sigma_2), var_2)
-
-        PDF = equation_1 * np.exp(- (1/2) * equation_2)
-        P[i] = np.squeeze(PDF)
+    PDF = equation_1 * equation_2
+    P = np.squeeze(PDF)
 
     P = np.where(P < 1e-300, 1e-300, P)
 

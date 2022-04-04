@@ -37,6 +37,8 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             kmax = X.shape[0]
         if not isinstance(kmin, int) or kmin < 1 or kmin >= X.shape[0]:
             return None, None
+        
+        
 
         results = []
         var = []

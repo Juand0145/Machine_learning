@@ -16,6 +16,12 @@ def regular(P):
     probabilities, or None on failure
     """
     try:
+        if len(P.shape) != 2:
+            return None
+        n = P.shape[0]
+        if n != P.shape[1]:
+            return None
+
         # note: the matrix is row stochastic.
         # A markov chain transition will correspond to left multiplying
         # by a row vector.

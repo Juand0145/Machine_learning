@@ -19,7 +19,7 @@ def markov_chain(P, s, t=1):
     being in a specific state after t iterations, or None on failure
     """
     if len(P.shape) != 2:
-            return None
+        return None
     n1, n2 = P.shape
     if (n1 != n2) or type(P) is not np.ndarray or not isinstance(t, int):
         return None

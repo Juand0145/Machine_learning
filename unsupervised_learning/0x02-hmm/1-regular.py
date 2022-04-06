@@ -22,28 +22,16 @@ def regular(P):
         if n != P.shape[1]:
             return None
 
-        # note: the matrix is row stochastic.
-        # A markov chain transition will correspond to left multiplying
-        # by a row vector.
-        Q = P
+        #  (πP).T = π.T ⟹ P.T π.T = π.T (.)
+        evals, evecs = np.linalg.eig(P.T)
 
-        # We have to transpose so that Markov transitions correspond to right
-        # multiplying by a column vector. np.linalg.eig finds right
-        # eigenvectors.
-        evals, evecs = np.linalg.eig(Q.T)
-        evec1 = evecs[:, np.isclose(evals, 1)]
+        # trick: has to be normalized
+        state = (evecs / evecs.sum())
 
-        # Since np.isclose will return an array, we've indexed with an array
-        # so we still have our 2nd axis. Get rid of it, since it's only size 1.
-        evec1 = evec1[:, 0]
-
-        stationary = evec1 / evec1.sum()
-        if np.sum(stationary) != 1:
-            return None
-        if np.all(P) != 1:
-            return None
-
-        return(stationary)
-
+        # P.T π.T = π.T (.)
+        new_state = np.dot(state.T, P)
+        for i in new_state:
+            if (i >= 0).all() and np.isclose(i.sum(), 1):
+                return i.reshape(1, n)
     except Exception:
         return None

@@ -35,7 +35,8 @@ class GaussianProcess():
         Args:
             X1 is a numpy.ndarray of shape (m, 1)
             X2 is a numpy.ndarray of shape (n, 1)
-        Returns: the covariance kernel matrix as a numpy.ndarray of shape (m, n)
+        Returns: the covariance kernel matrix as a numpy.ndarray of
+        shape (m, n)
         """
         # formula κ(xi,xj)=σ^2f exp(−12l2(xi−xj)T(xi−xj))(10)
         # source: http://krasserm.github.io/2018/03/19/gaussian-processes/

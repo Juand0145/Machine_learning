@@ -26,7 +26,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     encoder.add(keras.Input(shape=(input_dims, )))
 
     number_layers = len(hidden_layers)
-    for i in range(number_layers - 1, -1, -1):
+    for i in range(number_layers):
         encoder.add(keras.layers.Dense(units=hidden_layers[i],
                                        activation="relu"))
 

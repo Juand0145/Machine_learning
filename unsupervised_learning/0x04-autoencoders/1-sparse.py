@@ -1,4 +1,4 @@
-#!/usr/bin/nev python3
+#!/usr/bin/env python3
 """File that contains the function autoencoder"""
 import tensorflow.keras as keras
 

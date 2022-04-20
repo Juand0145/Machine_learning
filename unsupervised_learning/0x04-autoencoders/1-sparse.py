@@ -33,7 +33,8 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
 
     regularizer = keras.regularizers.l1(lambtha)
     output_layer = keras.layers.Dense(units=latent_dims,
-                                      activation="relu")
+                                      activation="relu",
+                                      activity_regularizer=regularizer)
 
     output_encoder = output_layer(prev_layer)
 

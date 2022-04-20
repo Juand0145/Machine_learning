@@ -28,52 +28,55 @@ def autoencoder(input_dims, filters, latent_dims):
       decoder is the decoder model
       auto is the full autoencoder model
     """
-    # Encoder
-    encoder = keras.models.Sequential()
+    input_encoder = keras.Input(shape=(input_dims))
 
-    encoder.add(keras.Input(shape=(input_dims)))
-
-    # Hidden layers
+    prev_layer = input_encoder
     for i in range(len(filters)):
-        encoder.add(keras.layers.Conv2D(filters=filters[i],
-                                        kernel_size=(3, 3),
-                                        padding="same",
-                                        activation="relu"))
-        encoder.add(keras.layers.MaxPooling2D(pool_size=(2, 2),
-                                              padding='same'))
+        hidden_layer = keras.layers.Conv2D(filters[i],
+                                           activation='relu',
+                                           kernel_size=(3, 3),
+                                           padding='same')
+        prev_layer = hidden_layer(prev_layer)
+        pooling_layer = keras.layers.MaxPooling2D((2, 2),
+                                                  padding='same')
+        prev_layer = pooling_layer(prev_layer)
+    encoder_outputs = prev_layer
+    encoder = keras.Model(inputs=input_encoder, outputs=encoder_outputs)
 
-    # Decoder
-    decoder = keras.models.Sequential()
+    # decoder
+    input_decoder = keras.Input(shape=(latent_dims))
 
-    decoder.add(keras.Input(shape=(latent_dims)))
-
-    # Hidden Layers
+    prev_layer = input_decoder
     for i in range(len(filters) - 1, 0, -1):
-        decoder.add(keras.layers.Conv2D(filters=filters[i],
-                                        kernel_size=(3, 3),
-                                        padding="same",
-                                        activation="relu"))
-        decoder.add(keras.layers.UpSampling2D((2, 2)))
+        hidden_layer = keras.layers.Conv2D(filters[i],
+                                           activation='relu',
+                                           kernel_size=(3, 3),
+                                           padding='same')
+        prev_layer = hidden_layer(prev_layer)
+        upsample_layer = keras.layers.UpSampling2D((2, 2))
+        prev_layer = upsample_layer(prev_layer)
 
-    # Last hidden layer
-    decoder.add(keras.layers.Conv2D(filters=filters[-1],
-                                    kernel_size=(3, 3),
-                                    padding="valid",
-                                    activation="relu"))
-    decoder.add(keras.layers.UpSampling2D((2, 2)))
+    # Decoder Last layer
+    last_layer = keras.layers.Conv2D(filters[0],
+                                     kernel_size=(3, 3),
+                                     padding='valid',
+                                     activation='relu')
+    prev_layer = last_layer(prev_layer)
+    upsample_layer = keras.layers.UpSampling2D((2, 2))
+    prev_layer = upsample_layer(prev_layer)
 
-    # Output layer
-    decoder.add(keras.layers.Conv2D(filters=input_dims[2],
-                                    kernel_size=(3, 3),
-                                    padding="same",
-                                    activation="sigmoid"))
+    # Decoder Last Layer
+    output_layer = keras.layers.Conv2D(input_dims[2],
+                                       activation='sigmoid',
+                                       kernel_size=(3, 3),
+                                       padding='same')
+    decoder_outputs = output_layer(prev_layer)
+    decoder = keras.Model(inputs=input_decoder, outputs=decoder_outputs)
 
-    # Autoencoder
-    inputs = keras.Input(shape=(input_dims))
+    # autoencoder
+    inputs = input_encoder
     outputs = decoder(encoder(inputs))
-    auto = keras.Model(inputs=inputs,
-                       outputs=outputs)
-
+    auto = keras.Model(inputs=inputs, outputs=outputs)
     auto.compile(optimizer='adam',
                  loss='binary_crossentropy')
 

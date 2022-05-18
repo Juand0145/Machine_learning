@@ -21,8 +21,8 @@ def sdp_attention(Q, K, V, mask=None):
     Returns: output, weights
     outputa tensor with its last two dimensions as (..., seq_len_q, dv)
     containing the scaled dot product attention
-    weights a tensor with its last two dimensions as (..., seq_len_q, seq_len_v)
-    containing the attention weights
+    weights a tensor with its last two dimensions as
+    (..., seq_len_q, seq_len_v) containing the attention weights
     """
     matmul_qk = tf.matmul(Q, K, transpose_b=True)
 

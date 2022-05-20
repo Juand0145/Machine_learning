@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """File that contains the function positional_encoding"""
-import tensorflow as tf
 import numpy as np
 
 

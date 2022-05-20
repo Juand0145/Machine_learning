@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """File that contains the class EncoderBlock"""
 import tensorflow as tf
+MultiHeadAttention = __import__('6-multihead_attention').MultiHeadAttention
 
 
 class EncoderBlock(tf.keras.layers.Layer):
@@ -23,8 +24,6 @@ class EncoderBlock(tf.keras.layers.Layer):
           dropout1 - the first dropout layer
           dropout2 - the second dropout layer
         """
-        MultiHeadAttention = __import__(
-            '6-multihead_attention').MultiHeadAttention
 
         self.mha = MultiHeadAttention(dm, h)
         self.dense_hidden = tf.keras.layers.Dense(hidden, activation='relu')

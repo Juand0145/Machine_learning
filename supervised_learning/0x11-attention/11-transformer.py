@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """File tha contains the class Transformer"""
 import tensorflow as tf
+Encoder = __import__('9-transformer_encoder').Encoder
+Decoder = __import__('10-transformer_decoder').Decoder
 
 
 class transformer(tf.keras.Model):
@@ -24,8 +26,6 @@ class transformer(tf.keras.Model):
           decoder - the decoder layer
           linear - a final Dense layer with target_vocab units
         """
-        Encoder = __import__('9-transformer_encoder').Encoder
-        Decoder = __import__('10-transformer_decoder').Decoder
 
         self.encoder = Encoder(N, dm, h, hidden, input_vocab,
                                max_seq_input, drop_rate)

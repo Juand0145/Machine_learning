@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """File that conatins the class MultiHeadAttention"""
 import tensorflow as tf
+sdp_attention = __import__('5-sdp_attention').sdp_attention
 
 
 class MultiHeadAttention(tf.keras.layers.Layer):
@@ -57,8 +58,6 @@ class MultiHeadAttention(tf.keras.layers.Layer):
             num_heads, seq_len, depth)"""
             x = tf.reshape(x, (batch_size, -1, self.h, self.depth))
             return tf.transpose(x, perm=[0, 2, 1, 3])
-
-        sdp_attention = __import__('5-sdp_attention').sdp_attention
 
         batch_size = tf.shape(Q)[0]
 

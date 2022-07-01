@@ -1,0 +1,10 @@
+h5py==2.10.0
+keras==2.2.4
+keras-rl==0.4.2
+numpy==1.18.5
+opencv-python==4.4.0.42
+pyyaml==5.3.1
+six==1.15.0
+gym
+Pillow
+tensorflow==1.14.0

@@ -1,0 +1,9 @@
+name: deep
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.6
+  - pip
+  - pip:
+    - pip

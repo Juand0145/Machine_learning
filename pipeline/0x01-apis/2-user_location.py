@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-""""""
+"""File that write a script that prints the location of a
+specific user"""
 import sys
 import requests
 import time

@@ -23,5 +23,5 @@ def sentientPlanets():
                 planets.append(homeworld.json()['name'])
 
     url = response.json()['next']
-            
+
     return planets

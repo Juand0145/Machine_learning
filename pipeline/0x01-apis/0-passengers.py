@@ -8,17 +8,22 @@ def availableShips(passengerCount):
     Function That create a method that returns the list of ships that
     can hold a given number of passengers
     """
-    starships = []
-    url = 'https://swapi-api.hbtn.io/api/starships/'
-
-    response = requests.get(url,
-                            headers={'Accept': 'application/json'},
-                            params={"term": 'starships'})
-
-    for ship in response.json()['results']:
-        passenger = ship['passengers'].replace(',', '')
-        if passenger.isnumeric() and int(passenger) >= passengerCount:
-            starships.append(ship['name'])
-    url = response.json()['next']
-
-    return starships
+    if type(passengerCount) is not int:
+        raise TypeError(
+            "passengerCount must be a positive number of passengers")
+    if passengerCount < 0:
+        raise ValueError(
+            "passengerCount must be a positive number of passengers")
+    url = "https://swapi-api.hbtn.io/api/starships/?format=json"
+    ships = []
+    while url:
+        results = requests.get(url).json()
+        ships += results.get('results')
+        url = results.get('next')
+    shipsList = []
+    for ship in ships:
+        passengers = ship.get('passengers').replace(",", "")
+        if passengers != "n/a" and passengers != "unknown":
+            if int(passengers) >= passengerCount:
+                shipsList.append(ship.get('name'))
+    return shipsList

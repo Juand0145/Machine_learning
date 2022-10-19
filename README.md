@@ -1,4 +1,4 @@
-# Holbertonschool-machine_learning
+# Machine_learning
 
 In this repository you will find the path I took to learn Machine Learning.  This was a process of around two years where I learned not only how to write the code behind this enormous and exciting world of artificial intelligence, but also the mathematics on which the technology is based, which every day ceases to be a science fiction dream to become an everyday tool.  As you can see, it is divided into 4 folders where each one represents one of the current methods of autonomous learning.
 
